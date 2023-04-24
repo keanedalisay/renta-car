@@ -24,13 +24,10 @@ private:
         std::cout << "\n"
     };
 
-public:
-    void show(void)
+    void profile(void)
     {
         using std::cout;
         using std::setw;
-
-        hdng();
 
         << setw(90) << "Kindly fill out the following details.";
         cout << "\n\n"
@@ -44,6 +41,14 @@ public:
         std::cin >> car_rent_days;
 
         system("cls");
+    }
+
+public:
+    void show(void)
+    {
+
+        hdng();
+        profile();
     }
 };
 
