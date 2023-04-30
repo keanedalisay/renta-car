@@ -113,10 +113,10 @@ private:
 
     int veh_ttl_rent;
 
-    void hdng(void)
+    void hdng(std::string hdr_txt, int lft_mrgn)
     {
         std::cout << "\n"
-                  << std::setw(90) << "           CAR RENTAL FORM         \n";
+                  << std::setw(lft_mrgn) << "           " << hdr_txt << "         \n";
         std::cout << std::setw(90) << "-----------------------------------\n";
         std::cout << "\n";
     }
@@ -126,7 +126,7 @@ private:
         using std::cout;
         using std::setw;
 
-        hdng();
+        hdng("CAR RENTAL FORM", 65);
         cout << setw(90) << "Kindly fill out the following details.";
         cout << "\n\n"
              << setw(60) << "Full Name: ";
@@ -155,7 +155,7 @@ private:
         do
         {
             system("cls");
-            hdng();
+            hdng("CAR RENTAL FORM", 65);
             cout << setw(82) << "Vehicle class to rent?";
             cout << "\n\n";
 
@@ -226,7 +226,7 @@ private:
 
         char has_cnfrm;
 
-        cout << setw(90) << "------------- PROCESSING -------------\n\n";
+        hdng("PROCESSING", 68);
         sleep(2);
         cout << setw(82) << "Your total days of rent >> " << veh_rent_days << "\n\n";
         veh_ttl_rent = veh_fixed_rent + (veh_daily_rent * (veh_rent_days - 7));
@@ -254,8 +254,8 @@ public:
 int main()
 {
 
-    Welcome();
-    Home();
+    // Welcome();
+    // Home();
     CarRentalForm form;
     form.show();
 }
