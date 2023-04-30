@@ -226,17 +226,20 @@ private:
 
         char has_cnfrm;
 
-        hdng("PROCESSING", 68);
+        hdng("PROCESSING", 67);
         sleep(2);
+        cout << setw(80) << "Your vehicle class >> " << veh_chsn << "\n\n";
+        sleep(1);
         cout << setw(82) << "Your total days of rent >> " << veh_rent_days << "\n\n";
         veh_ttl_rent = veh_fixed_rent + (veh_daily_rent * (veh_rent_days - 7));
         sleep(1);
         cout
             << setw(80) << "Your total payment >> " << veh_ttl_rent << "\n\n";
+        std::cout << std::setw(91) << "-----------------------------------\n\n";
         sleep(1);
-        cout << setw(78) << "Confirm payment?"
+        cout << setw(80) << "Confirm payment?"
              << "\n";
-        cout << setw(65) << ": ";
+        cout << setw(66) << ": ";
         std::cin >> has_cnfrm;
         std::cin.ignore(1000, '\n');
     }
