@@ -228,13 +228,13 @@ private:
 
         hdng("PROCESSING", 67);
         sleep(2);
-        cout << setw(80) << "Your vehicle class >> " << veh_chsn << "\n\n";
+        cout << setw(80) << "Your vehicle class: " << veh_chsn << "\n\n";
         sleep(1);
-        cout << setw(82) << "Your total days of rent >> " << veh_rent_days << "\n\n";
+        cout << setw(82) << "Your total days of rent: " << veh_rent_days << "\n\n";
         veh_ttl_rent = veh_fixed_rent + (veh_daily_rent * (veh_rent_days - 7));
         sleep(1);
         cout
-            << setw(80) << "Your total payment >> " << veh_ttl_rent << "\n\n";
+            << setw(80) << "Your total payment: " << veh_ttl_rent << "\n\n";
         std::cout << std::setw(91) << "-----------------------------------\n\n";
         sleep(1);
         cout << setw(80) << "Confirm payment?"
@@ -242,6 +242,43 @@ private:
         cout << setw(66) << ": ";
         std::cin >> has_cnfrm;
         std::cin.ignore(1000, '\n');
+        system("cls");
+    }
+    void receipt(void)
+    {
+        using std::cout;
+        using std::setw;
+
+        hdng("PRINTING RECEIPT", 65);
+        cout << setw(95) << "A receipt text file will be made for you...\n\n";
+        std::ofstream rcpt;
+        rcpt.open("receipt.txt", std::ios::out | std::ios::trunc);
+
+        rcpt << setw(92) << "              RECEIPT              \n";
+        rcpt << setw(92) << "-----------------------------------\n\n";
+        rcpt << setw(72) << "Customer Name | " << name << "\n";
+        rcpt << setw(78) << "Customer Age | " << age << "\n\n";
+        rcpt << setw(78) << "Vehicle Class | " << veh_chsn << "\n\n";
+        rcpt << setw(82) << "Days to Rent Vehicle | " << veh_rent_days << "\n";
+        rcpt << setw(80) << "Total Rent Cost | " << veh_ttl_rent << "\n\n";
+        rcpt << setw(92) << "-----------------------------------\n\n";
+        rcpt << setw(70) << "** Thank you, " << name << ". **\n\n";
+        rcpt << setw(92) << "** Please come to one of our outlets \n";
+        rcpt << setw(92) << "tomorrow and receive your vehicle! **";
+        rcpt.close();
+        sleep(1);
+
+        cout << setw(98) << "Receipt succesfully made! Outputting it here...\n\n";
+        system("cls");
+
+        char line[1000];
+        std::ifstream n_rcpt;
+        n_rcpt.open("receipt.txt");
+        while (n_rcpt)
+        {
+            n_rcpt.getline(line, 1000);
+            cout << line << "\n";
+        }
     }
 
 public:
@@ -251,14 +288,15 @@ public:
         profile();
         vehicle();
         total();
+        receipt();
     }
 };
 
 int main()
 {
 
-    // Welcome();
-    // Home();
+    Welcome();
+    Home();
     CarRentalForm form;
     form.show();
 }
