@@ -8,7 +8,6 @@
 
 void Welcome(void);
 void Home(void);
-
 class Vehicle
 {
 private:
@@ -264,7 +263,13 @@ private:
         rcpt << setw(92) << "-----------------------------------\n\n";
         rcpt << setw(70) << "** Thank you, " << name << ". **\n\n";
         rcpt << setw(92) << "** Please come to one of our outlets \n";
-        rcpt << setw(92) << "tomorrow and receive your vehicle! **";
+        rcpt << setw(92) << "tomorrow and receive your vehicle! **\n\n";
+        rcpt << setw(93) << "++================++++===============++ \n";
+        rcpt << setw(93) << "||                                   || \n";
+        rcpt << setw(93) << "||   CAR RENTAL SERVICES  by         || \n";
+        rcpt << setw(93) << "||                      RentA-Car    || \n";
+        rcpt << setw(93) << "||                                   || \n";
+        rcpt << setw(93) << "++================++++===============++ \n";
         rcpt.close();
         sleep(1);
 
@@ -279,6 +284,7 @@ private:
             n_rcpt.getline(line, 1000);
             cout << line << "\n";
         }
+        n_rcpt.close();
     }
 
 public:
