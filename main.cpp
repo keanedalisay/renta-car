@@ -9,6 +9,97 @@
 void Welcome(void);
 void Home(void);
 
+class Vehicle
+{
+private:
+    int fixed_week_rent = 0;
+    int daily_rent = 0;
+    std::string vhcle = "";
+
+public:
+    void setFixedRent(const int prc)
+    {
+        fixed_week_rent = prc;
+    }
+    void setDailyRent(const int prc)
+    {
+        daily_rent = prc;
+    }
+    void setVehicle(const std::string veh)
+    {
+        vhcle = veh;
+    }
+    void showDetails(void)
+    {
+        using std::cout;
+        using std::setw;
+
+        cout << "\n";
+        cout << setw(70) << "------------ " << vhcle << " -------------\n\n";
+        cout
+            << setw(84) << "Starting rent for a week: " << fixed_week_rent << "\n";
+        cout << setw(85) << "Daily rent after starting: " << daily_rent << "\n\n";
+        cout << setw(90) << "----------------------------------\n";
+    }
+    void copyDetails(std::string &veh_var, int &fix_var, int &daily_var)
+    {
+        veh_var = vhcle;
+        fix_var = fixed_week_rent;
+        daily_var = daily_rent;
+    }
+};
+
+class Sedan : public Vehicle
+{
+public:
+    Sedan()
+    {
+        setFixedRent(100);
+        setDailyRent(10);
+        setVehicle("Sedan");
+    }
+};
+class SUV : public Vehicle
+{
+public:
+    SUV()
+    {
+        setFixedRent(200);
+        setDailyRent(20);
+        setVehicle("SUV");
+    }
+};
+class Hatchback : public Vehicle
+{
+public:
+    Hatchback()
+    {
+        setFixedRent(150);
+        setDailyRent(15);
+        setVehicle("Hatchback");
+    }
+};
+class Pickup : public Vehicle
+{
+public:
+    Pickup()
+    {
+        setFixedRent(210);
+        setDailyRent(21);
+        setVehicle("Pickup");
+    }
+};
+class Micro : public Vehicle
+{
+public:
+    Micro()
+    {
+        setFixedRent(70);
+        setDailyRent(7);
+        setVehicle("Micro");
+    }
+};
+
 class CarRentalForm
 {
 private:
@@ -16,20 +107,27 @@ private:
     int age;
     int car_rent_days;
 
+    std::string veh_chsn;
+    int veh_fixed_rent;
+    int veh_daily_rent;
+
+    int ttl_rent;
+
     void hdng(void)
     {
         std::cout << "\n"
                   << std::setw(90) << "           CAR RENTAL FORM         \n";
         std::cout << std::setw(90) << "-----------------------------------\n";
-        std::cout << "\n"
-    };
+        std::cout << "\n";
+    }
 
     void profile(void)
     {
         using std::cout;
         using std::setw;
 
-        << setw(90) << "Kindly fill out the following details.";
+        hdng();
+        cout << setw(90) << "Kindly fill out the following details.";
         cout << "\n\n"
              << setw(60) << "Full Name: ";
         std::getline(std::cin, name);
@@ -37,9 +135,88 @@ private:
              << setw(55) << "Age: ";
         std::cin >> age;
         cout << "\n"
-             << setw(83) << "Duration of Car Rental [# of Days]: ";
+             << setw(75) << "Rental duration in days...";
+        cout
+            << "\n"
+            << setw(53) << ": ";
         std::cin >> car_rent_days;
 
+        system("cls");
+    }
+
+    void vehicle(void)
+    {
+        using std::cout;
+        using std::setw;
+
+        int car_chc;
+        char has_chsn;
+
+        do
+        {
+            system("cls");
+            hdng();
+            cout << setw(82) << "Vehicle class to rent?";
+            cout << "\n\n";
+
+            cout << setw(78) << "Micro [1]\n";
+            cout << setw(78) << "Sedan [2]\n";
+            cout << setw(78) << "Hatchback [3]\n";
+            cout << setw(78) << "Pickup [4]\n";
+            cout << setw(79) << "SUV [5]\n\n";
+
+            cout << setw(72) << ": ";
+            std::cin >> car_chc;
+            std::cin.ignore(1000, '\n');
+
+            switch (car_chc)
+            {
+            case 1:
+            {
+                Micro micro;
+                micro.showDetails();
+                micro.copyDetails(veh_chsn, veh_fixed_rent, veh_daily_rent);
+                break;
+            }
+            case 2:
+            {
+                Sedan sedan;
+                sedan.showDetails();
+                sedan.copyDetails(veh_chsn, veh_fixed_rent, veh_daily_rent);
+                break;
+            }
+            case 3:
+            {
+                Hatchback htchbck;
+                htchbck.showDetails();
+                htchbck.copyDetails(veh_chsn, veh_fixed_rent, veh_daily_rent);
+                break;
+            }
+            case 4:
+            {
+                Pickup pickup;
+                pickup.showDetails();
+                pickup.copyDetails(veh_chsn, veh_fixed_rent, veh_daily_rent);
+                break;
+            }
+            case 5:
+            {
+                SUV suv;
+                suv.showDetails();
+                suv.copyDetails(veh_chsn, veh_fixed_rent, veh_daily_rent);
+                break;
+            }
+            }
+
+            cout << "\n";
+            cout << setw(85) << "Will that be your choice?\n";
+            cout << setw(88) << "Enter [Y] for yes, [N] if no...\n";
+            cout << "\n";
+            cout << setw(72) << ": ";
+            std::cin >> has_chsn;
+            has_chsn = toupper(has_chsn);
+            std::cin.ignore(1000, '\n');
+        } while (has_chsn != 'Y');
         system("cls");
     }
 
@@ -47,8 +224,8 @@ public:
     void show(void)
     {
 
-        hdng();
         profile();
+        vehicle();
     }
 };
 
