@@ -105,7 +105,7 @@ class CarRentalForm
 private:
     std::string name;
     int age;
-    int car_rent_days;
+    int veh_rent_days;
 
     std::string veh_chsn;
     int veh_fixed_rent;
@@ -139,7 +139,7 @@ private:
         cout
             << "\n"
             << setw(53) << ": ";
-        std::cin >> car_rent_days;
+        std::cin >> veh_rent_days;
 
         system("cls");
     }
@@ -149,7 +149,7 @@ private:
         using std::cout;
         using std::setw;
 
-        int car_chc;
+        int veh_chc;
         char has_chsn;
 
         do
@@ -166,10 +166,10 @@ private:
             cout << setw(79) << "SUV [5]\n\n";
 
             cout << setw(72) << ": ";
-            std::cin >> car_chc;
+            std::cin >> veh_chc;
             std::cin.ignore(1000, '\n');
 
-            switch (car_chc)
+            switch (veh_chc)
             {
             case 1:
             {
