@@ -111,7 +111,7 @@ private:
     int veh_fixed_rent;
     int veh_daily_rent;
 
-    int ttl_rent;
+    int veh_ttl_rent;
 
     void hdng(void)
     {
@@ -219,6 +219,27 @@ private:
         } while (has_chsn != 'Y');
         system("cls");
     }
+    void total(void)
+    {
+        using std::cout;
+        using std::setw;
+
+        char has_cnfrm;
+
+        cout << setw(90) << "------------- PROCESSING -------------\n\n";
+        sleep(2);
+        cout << setw(82) << "Your total days of rent >> " << veh_rent_days << "\n\n";
+        veh_ttl_rent = veh_fixed_rent + (veh_daily_rent * (veh_rent_days - 7));
+        sleep(1);
+        cout
+            << setw(80) << "Your total payment >> " << veh_ttl_rent << "\n\n";
+        sleep(1);
+        cout << setw(78) << "Confirm payment?"
+             << "\n";
+        cout << setw(65) << ": ";
+        std::cin >> has_cnfrm;
+        std::cin.ignore(1000, '\n');
+    }
 
 public:
     void show(void)
@@ -226,6 +247,7 @@ public:
 
         profile();
         vehicle();
+        total();
     }
 };
 
